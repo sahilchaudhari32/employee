@@ -1,29 +1,34 @@
 import { ScrollView, Text } from "react-native";
-import { Card, Header, styles } from "@/components/SurveyUI";
+import { Card, Header, SafeScreen, styles } from "@/components/SurveyUI";
 export default function Profile() {
   return (
-    <ScrollView style={styles.screen}>
-      <Header title="Profile" subtitle="Student details" />
-      <Card>
-        <Text style={{ fontSize: 18, fontWeight: "800", color: "#172033" }}>
-          Sahil Chaudhari
-        </Text>
-        <Text style={{ marginTop: 10, color: "#6B7280" }}>
-          Enrollment: SUK250054CE091
-        </Text>
-        <Text style={{ marginTop: 6, color: "#6B7280" }}>
-          Course: B.Tech CSE
-        </Text>
-      </Card>
-      <Card>
-        <Text style={{ fontWeight: "800", fontSize: 16, color: "#172033" }}>
-          About Smart Survey
-        </Text>
-        <Text style={{ color: "#6B7280", marginTop: 8, lineHeight: 21 }}>
-          A field-ready inspection workspace for capturing reliable site
-          information, photos, contacts and location details.
-        </Text>
-      </Card>
-    </ScrollView>
+    <SafeScreen>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 28 }}
+        style={styles.screen}
+      >
+        <Header title="Profile" subtitle="Student details" />
+        <Card>
+          <Text style={{ fontSize: 18, fontWeight: "800", color: "#172033" }}>
+            Sahil Chaudhari
+          </Text>
+          <Text style={{ marginTop: 10, color: "#6B7280" }}>
+            Enrollment: SUK250054CE091
+          </Text>
+          <Text style={{ marginTop: 6, color: "#6B7280" }}>
+            Course: B.Tech CSE
+          </Text>
+        </Card>
+        <Card>
+          <Text style={{ fontWeight: "800", fontSize: 16, color: "#172033" }}>
+            About Smart Survey
+          </Text>
+          <Text style={{ color: "#6B7280", marginTop: 8, lineHeight: 21 }}>
+            A field-ready inspection workspace for capturing reliable site
+            information, photos, contacts and location details.
+          </Text>
+        </Card>
+      </ScrollView>
+    </SafeScreen>
   );
 }

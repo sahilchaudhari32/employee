@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const colors = {
   ink: "#172033",
@@ -27,6 +28,10 @@ export function Header({ title, subtitle, back = false }) {
       </View>
     </View>
   );
+}
+/** @param {{ children: any, style?: any }} props */
+export function SafeScreen({ children, style = undefined }) {
+  return <SafeAreaView style={[styles.safe, style]}>{children}</SafeAreaView>;
 }
 /** @param {{ children: any, style?: any }} props */
 export function Card({ children, style = undefined }) {
@@ -82,17 +87,22 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   back: { padding: 4 },
-  title: { fontSize: 28, fontWeight: "800", color: colors.ink },
+  title: {
+    fontSize: 30,
+    fontWeight: "800",
+    color: colors.ink,
+    letterSpacing: -0.5,
+  },
   subtitle: { color: colors.muted, marginTop: 3 },
   card: {
     backgroundColor: colors.white,
-    borderRadius: 18,
+    borderRadius: 20,
     padding: 18,
     marginBottom: 14,
     shadowColor: "#000",
     shadowOpacity: 0.04,
     shadowRadius: 10,
-    elevation: 2,
+    elevation: 3,
   },
   field: { marginBottom: 15 },
   label: {
@@ -105,7 +115,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 12,
+    borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
     fontSize: 15,
@@ -114,8 +124,9 @@ export const styles = StyleSheet.create({
   multiline: { minHeight: 92, textAlignVertical: "top" },
   button: {
     backgroundColor: colors.primary,
-    borderRadius: 12,
-    padding: 15,
+    borderRadius: 14,
+    paddingVertical: 16,
+    paddingHorizontal: 18,
     alignItems: "center",
     marginTop: 4,
   },

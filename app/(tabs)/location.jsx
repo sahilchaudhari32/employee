@@ -1,8 +1,15 @@
 import * as Clipboard from "expo-clipboard";
 import * as Location from "expo-location";
 import { useState } from "react";
-import { Alert, ActivityIndicator, Text, View } from "react-native";
-import { Button, Card, Header, colors, styles } from "@/components/SurveyUI";
+import { ActivityIndicator, Alert, Text } from "react-native";
+import {
+  Button,
+  Card,
+  Header,
+  SafeScreen,
+  colors,
+  styles,
+} from "@/components/SurveyUI";
 export default function LocationScreen() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,7 +33,7 @@ export default function LocationScreen() {
     Alert.alert("Copied", "Current location copied to clipboard.");
   };
   return (
-    <View style={styles.screen}>
+    <SafeScreen style={styles.screen}>
       <Header
         title="Location"
         subtitle="Capture precise inspection coordinates"
@@ -60,6 +67,6 @@ export default function LocationScreen() {
         onPress={refresh}
       />
       <Button title="Copy current location" secondary onPress={copy} />
-    </View>
+    </SafeScreen>
   );
 }

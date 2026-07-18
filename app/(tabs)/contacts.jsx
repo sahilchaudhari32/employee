@@ -9,7 +9,14 @@ import {
   Text,
   View,
 } from "react-native";
-import { Card, Field, Header, colors, styles } from "@/components/SurveyUI";
+import {
+  Card,
+  Field,
+  Header,
+  SafeScreen,
+  colors,
+  styles,
+} from "@/components/SurveyUI";
 export default function ContactsScreen() {
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState("");
@@ -38,7 +45,7 @@ export default function ContactsScreen() {
     [items, query],
   );
   return (
-    <View style={styles.screen}>
+    <SafeScreen style={styles.screen}>
       <Header
         title="Contacts"
         subtitle={`${items.length} contacts available`}
@@ -106,6 +113,6 @@ export default function ContactsScreen() {
           );
         }}
       />
-    </View>
+    </SafeScreen>
   );
 }

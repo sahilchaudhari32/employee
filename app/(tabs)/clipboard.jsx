@@ -1,11 +1,12 @@
 import * as Clipboard from "expo-clipboard";
 import { useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text } from "react-native";
 import {
   Button,
   Card,
   Field,
   Header,
+  SafeScreen,
   colors,
   styles,
 } from "@/components/SurveyUI";
@@ -24,7 +25,7 @@ export default function ClipboardScreen() {
     setNotes("");
   };
   return (
-    <View style={styles.screen}>
+    <SafeScreen style={styles.screen}>
       <Header title="Clipboard" subtitle="Move useful field data quickly" />
       <Card>
         <Text style={{ fontWeight: "800", color: colors.ink }}>Quick copy</Text>
@@ -47,6 +48,6 @@ export default function ClipboardScreen() {
       />
       <Button title="Paste from clipboard" onPress={paste} />
       <Button title="Clear clipboard data" danger onPress={clear} />
-    </View>
+    </SafeScreen>
   );
 }
