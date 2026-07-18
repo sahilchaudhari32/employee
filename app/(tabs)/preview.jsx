@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { Alert, Image, ScrollView, Text } from "react-native";
+import { Alert, Image, ScrollView, StyleSheet, Text } from "react-native";
 import {
   Button,
   Card,
@@ -53,16 +53,13 @@ export default function Preview() {
             ],
             ["Notes", data.notes || "No notes"],
           ].map(([label, value]) => (
-            <Text key={label} style={{ color: colors.ink, marginBottom: 12 }}>
-              <Text style={{ fontWeight: "800" }}>{label}: </Text>
+            <Text key={label} style={styles.detail}>
+              <Text style={styles.detailLabel}>{label}: </Text>
               {value}
             </Text>
           ))}
           {data.photo && (
-            <Image
-              source={{ uri: data.photo }}
-              style={{ height: 180, borderRadius: 12, marginTop: 4 }}
-            />
+            <Image source={{ uri: data.photo }} style={styles.photo} />
           )}
         </Card>
         {!id && (
@@ -79,3 +76,9 @@ export default function Preview() {
     </SafeScreen>
   );
 }
+
+const styles = StyleSheet.create({
+  detail: { color: colors.ink, marginBottom: 12 },
+  detailLabel: { fontWeight: "800" },
+  photo: { borderRadius: 12, height: 180, marginTop: 4 },
+});

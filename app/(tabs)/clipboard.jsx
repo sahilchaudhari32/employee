@@ -1,6 +1,6 @@
 import * as Clipboard from "expo-clipboard";
 import { useState } from "react";
-import { Alert, Text } from "react-native";
+import { Alert, StyleSheet, Text } from "react-native";
 import {
   Button,
   Card,
@@ -8,7 +8,7 @@ import {
   Header,
   SafeScreen,
   colors,
-  styles,
+  styles as uiStyles,
 } from "@/components/SurveyUI";
 export default function ClipboardScreen() {
   const [value, setValue] = useState("");
@@ -25,19 +25,17 @@ export default function ClipboardScreen() {
     setNotes("");
   };
   return (
-    <SafeScreen style={styles.screen}>
+    <SafeScreen style={uiStyles.screen}>
       <Header title="Clipboard" subtitle="Move useful field data quickly" />
       <Card>
-        <Text style={{ fontWeight: "800", color: colors.ink }}>Quick copy</Text>
+        <Text style={styles.heading}>Quick copy</Text>
         <Button title="Copy sample survey ID" onPress={() => copy("SF-1001")} />
         <Button
           title="Copy current location"
           secondary
           onPress={() => copy("Location not captured")}
         />
-        <Text style={{ color: colors.muted, marginTop: 12 }}>
-          {value || "Clipboard is ready."}
-        </Text>
+        <Text style={styles.status}>{value || "Clipboard is ready."}</Text>
       </Card>
       <Field
         label="Paste notes"
@@ -51,3 +49,8 @@ export default function ClipboardScreen() {
     </SafeScreen>
   );
 }
+
+const styles = StyleSheet.create({
+  heading: { color: colors.ink, fontWeight: "800" },
+  status: { color: colors.muted, marginTop: 12 },
+});

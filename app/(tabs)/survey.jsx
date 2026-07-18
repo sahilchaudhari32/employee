@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { Alert, ScrollView, Text, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import {
   Button,
   Field,
@@ -9,6 +9,7 @@ import {
   styles,
 } from "@/components/SurveyUI";
 import { useSurveys } from "@/context/SurveyContext";
+
 export default function Survey() {
   const { draft, setDraft } = useSurveys();
   const update = (key, value) => setDraft({ ...draft, [key]: value });
@@ -36,7 +37,7 @@ export default function Survey() {
         <Header title="New survey" subtitle="Capture the essentials first" />
         <Field
           label="Site name *"
-          placeholder="e.g. Riverside Warehouse"
+          placeholder="Enter Site Name"
           value={draft.siteName}
           onChangeText={(v) => update("siteName", v)}
         />
@@ -54,7 +55,7 @@ export default function Survey() {
           multiline
         />
         <Text style={styles.label}>Priority</Text>
-        <View style={{ flexDirection: "row", marginBottom: 16, marginTop: 4 }}>
+        <View style={pageStyles.priorityRow}>
           {["Low", "Medium", "High"].map((p) => (
             <Pill
               key={p}
@@ -82,3 +83,7 @@ export default function Survey() {
     </SafeScreen>
   );
 }
+
+const pageStyles = StyleSheet.create({
+  priorityRow: { flexDirection: "row", marginBottom: 16, marginTop: 4 },
+});

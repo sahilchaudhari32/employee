@@ -1,14 +1,14 @@
 import * as Clipboard from "expo-clipboard";
 import * as Location from "expo-location";
 import { useState } from "react";
-import { ActivityIndicator, Alert, Text } from "react-native";
+import { ActivityIndicator, Alert, StyleSheet, Text } from "react-native";
 import {
   Button,
   Card,
   Header,
   SafeScreen,
   colors,
-  styles,
+  styles as uiStyles,
 } from "@/components/SurveyUI";
 export default function LocationScreen() {
   const [data, setData] = useState(null);
@@ -33,7 +33,7 @@ export default function LocationScreen() {
     Alert.alert("Copied", "Current location copied to clipboard.");
   };
   return (
-    <SafeScreen style={styles.screen}>
+    <SafeScreen style={uiStyles.screen}>
       <Header
         title="Location"
         subtitle="Capture precise inspection coordinates"
@@ -43,23 +43,15 @@ export default function LocationScreen() {
           <ActivityIndicator size="large" color={colors.primary} />
         ) : data ? (
           <>
-            <Text
-              style={{ fontSize: 18, fontWeight: "800", color: colors.ink }}
-            >
-              Current position
-            </Text>
-            <Text style={{ marginTop: 14, color: colors.muted }}>
-              Latitude: {data.latitude}
-            </Text>
-            <Text style={{ marginTop: 8, color: colors.muted }}>
-              Longitude: {data.longitude}
-            </Text>
-            <Text style={{ marginTop: 8, color: colors.muted }}>
+            <Text style={styles.heading}>Current position</Text>
+            <Text style={styles.latitude}>Latitude: {data.latitude}</Text>
+            <Text style={styles.detail}>Longitude: {data.longitude}</Text>
+            <Text style={styles.detail}>
               Accuracy: {Math.round(data.accuracy || 0)} m
             </Text>
           </>
         ) : (
-          <Text style={{ color: colors.muted }}>No location captured yet.</Text>
+          <Text style={styles.empty}>No location captured yet.</Text>
         )}
       </Card>
       <Button
@@ -70,3 +62,10 @@ export default function LocationScreen() {
     </SafeScreen>
   );
 }
+
+const styles = StyleSheet.create({
+  heading: { color: colors.ink, fontSize: 18, fontWeight: "800" },
+  latitude: { color: colors.muted, marginTop: 14 },
+  detail: { color: colors.muted, marginTop: 8 },
+  empty: { color: colors.muted },
+});
