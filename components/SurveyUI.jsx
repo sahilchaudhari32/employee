@@ -28,7 +28,8 @@ export function Header({ title, subtitle, back = false }) {
     </View>
   );
 }
-export function Card({ children, style }) {
+/** @param {{ children: any, style?: any }} props */
+export function Card({ children, style = undefined }) {
   return <View style={[styles.card, style]}>{children}</View>;
 }
 export function Field({ label, ...props }) {

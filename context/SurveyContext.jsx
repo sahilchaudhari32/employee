@@ -73,4 +73,5 @@ export function SurveyProvider({ children }) {
     <SurveyContext.Provider value={value}>{children}</SurveyContext.Provider>
   );
 }
+/** @returns {any} */
 export const useSurveys = () => useContext(SurveyContext);
