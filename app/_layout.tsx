@@ -3,7 +3,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { Drawer } from "expo-router";
+import { Drawer } from "expo-router/drawer";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 import { SurveyProvider } from "@/context/SurveyContext";
@@ -24,27 +24,6 @@ export default function RootLayout() {
           <Drawer.Screen
             name="(tabs)"
             options={{ headerShown: false, title: "Dashboard" }}
-          />
-          <Drawer.Screen
-            name="(tabs)/survey"
-            options={{ title: "New Survey" }}
-          />
-          <Drawer.Screen name="(tabs)/camera" options={{ title: "Camera" }} />
-          <Drawer.Screen
-            name="(tabs)/contacts"
-            options={{ title: "Contacts" }}
-          />
-          <Drawer.Screen
-            name="(tabs)/location"
-            options={{ title: "Location" }}
-          />
-          <Drawer.Screen
-            name="(tabs)/clipboard"
-            options={{ title: "Clipboard" }}
-          />
-          <Drawer.Screen
-            name="(tabs)/history"
-            options={{ title: "Survey History" }}
           />
           <Drawer.Screen
             name="modal"
