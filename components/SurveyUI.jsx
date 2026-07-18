@@ -10,15 +10,17 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const colors = {
-  ink: "#172033",
-  muted: "#6B7280",
-  primary: "#2563EB",
-  pale: "#EFF6FF",
-  background: "#F7F9FC",
-  border: "#E5E7EB",
+  ink: "#0B2942",
+  muted: "#5D7890",
+  primary: "#087EA4",
+  pale: "#DDF6FA",
+  background: "#EAFBFC",
+  border: "rgba(255,255,255,0.75)",
   white: "#FFFFFF",
   danger: "#DC2626",
   success: "#059669",
+  glass: "rgba(255,255,255,0.72)",
+  water: "#C7F1F5",
 };
 export function Header({ title, subtitle, back = false }) {
   return (
@@ -131,6 +133,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 12,
     marginBottom: 20,
+    paddingTop: 4,
   },
   back: { padding: 4 },
   title: {
@@ -141,12 +144,14 @@ export const styles = StyleSheet.create({
   },
   subtitle: { color: colors.muted, marginTop: 3 },
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.glass,
     borderRadius: 20,
+    borderColor: colors.border,
+    borderWidth: 1,
     padding: 18,
     marginBottom: 14,
     shadowColor: "#000",
-    shadowOpacity: 0.04,
+    shadowOpacity: 0.08,
     shadowRadius: 10,
     elevation: 3,
   },
@@ -158,9 +163,9 @@ export const styles = StyleSheet.create({
     marginBottom: 7,
   },
   input: {
-    backgroundColor: colors.white,
+    backgroundColor: "rgba(255,255,255,0.64)",
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: "rgba(255,255,255,0.9)",
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
