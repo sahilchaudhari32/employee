@@ -7,11 +7,11 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const colors = {
-  ink: "#111827",
-  muted: "#6B7280",
-  primary: "#4F46E5",
-  secondary: "#7C3AED",
-  accent: "#06B6D4",
+  ink: "#123B5D",
+  muted: "#5F7890",
+  primary: "#328FC1",
+  secondary: "#5B67D5",
+  accent: "#22B8D6",
   pale: "#DFF7FF",
   background: "#DFF7FF",
   border: "rgba(255,255,255,0.3)",
@@ -19,7 +19,7 @@ export const colors = {
   danger: "#EF4444",
   success: "#22C55E",
   warning: "#F59E0B",
-  glass: "rgba(255,255,255,0.58)",
+  glass: "rgba(255,255,255,0.68)",
   water: "#7FCDFF",
 };
 export function Header({ title, subtitle, back = false }) {
@@ -133,7 +133,7 @@ export const styles = StyleSheet.create({
   back: { padding: 4 },
   menuButton: { padding: 4 },
   title: {
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: "800",
     color: colors.ink,
     letterSpacing: -0.5,
@@ -147,7 +147,7 @@ export const styles = StyleSheet.create({
     padding: 18,
     marginBottom: 14,
     shadowColor: "#000",
-    shadowOpacity: 0.08,
+    shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 3,
   },

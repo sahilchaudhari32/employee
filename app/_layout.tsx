@@ -70,7 +70,7 @@ function AppDrawerContent(props: any) {
 const drawerStyles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "rgba(223,247,255,0.9)" },
   brand: {
-    backgroundColor: "#4F46E5",
+    backgroundColor: "#328FC1",
     borderBottomLeftRadius: 28,
     borderBottomRightRadius: 28,
     padding: 24,
@@ -85,12 +85,12 @@ const drawerStyles = StyleSheet.create({
     marginBottom: 14,
     width: 54,
   },
-  logoText: { color: "#4F46E5", fontSize: 18, fontWeight: "900" },
+  logoText: { color: "#328FC1", fontSize: 18, fontWeight: "900" },
   brandTitle: { color: "#FFFFFF", fontSize: 24, fontWeight: "900" },
   brandSubtitle: { color: "#C7F1F5", marginTop: 4 },
   menu: { paddingHorizontal: 12, paddingTop: 18 },
   item: { borderRadius: 14, marginVertical: 3 },
-  label: { color: "#0B2942", fontSize: 15, fontWeight: "700" },
+  label: { color: "#123B5D", fontSize: 15, fontWeight: "700" },
 });
 
 export default function RootLayout() {
