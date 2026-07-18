@@ -6,7 +6,7 @@ import {
   Header,
   SafeScreen,
   colors,
-  styles,
+  styles as uiStyles,
 } from "@/components/SurveyUI";
 import { useSurveys } from "@/context/SurveyContext";
 export default function Preview() {
@@ -30,7 +30,7 @@ export default function Preview() {
     <SafeScreen>
       <ScrollView
         contentContainerStyle={{ paddingBottom: 28 }}
-        style={styles.screen}
+        style={uiStyles.screen}
       >
         <Header
           title="Survey preview"
