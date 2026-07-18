@@ -24,19 +24,25 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="survay"
+        name="survey"
         options={{
-          title: 'Survay',
+          title: 'New Survey',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="checkmark.seal.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="camera"
+        name="history"
         options={{
-          title: 'Camera',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="camera.badge.ellipsis.fill" color={color} />,
+          title: 'History',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="clock.fill" color={color} />,
         }}
       />
+      <Tabs.Screen name="profile" options={{ title: 'Profile', tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} /> }} />
+      <Tabs.Screen name="camera" options={{ href: null }} />
+      <Tabs.Screen name="contacts" options={{ href: null }} />
+      <Tabs.Screen name="location" options={{ href: null }} />
+      <Tabs.Screen name="clipboard" options={{ href: null }} />
+      <Tabs.Screen name="preview" options={{ href: null }} />
     </Tabs>
   );
 }

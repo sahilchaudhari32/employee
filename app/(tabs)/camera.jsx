@@ -50,7 +50,7 @@ export default function CameraScreen() {
 
       setPhoto(result.uri);
       setCaptureTime(new Date().toLocaleString());
-    } catch (error) {
+    } catch (_error) {
       Alert.alert("Error", "Unable to capture photo.");
     }
   };
@@ -59,7 +59,7 @@ export default function CameraScreen() {
     try {
       await MediaLibrary.saveToLibraryAsync(photo);
       Alert.alert("Success", "Photo saved to gallery.");
-    } catch (error) {
+    } catch (_error) {
       Alert.alert("Error", "Failed to save photo.");
     }
   };
