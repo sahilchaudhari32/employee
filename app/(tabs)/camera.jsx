@@ -1,4 +1,7 @@
-import { CameraView, useCameraPermissions } from "expo-camera";
+import {
+  CameraView,
+  useCameraPermissions,
+} from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -14,7 +17,8 @@ import {
 export default function CameraScreen() {
   const cameraRef = useRef(null);
 
-  const [permission, requestPermission] = useCameraPermissions();
+  const [permission, requestPermission] =
+    useCameraPermissions();
 
   const [loading, setLoading] = useState(true);
   const [photo, setPhoto] = useState(null);
@@ -46,7 +50,8 @@ export default function CameraScreen() {
     if (!cameraRef.current) return;
 
     try {
-      const result = await cameraRef.current.takePictureAsync();
+      const result =
+        await cameraRef.current.takePictureAsync();
 
       setPhoto(result.uri);
       setCaptureTime(new Date().toLocaleString());
@@ -70,20 +75,24 @@ export default function CameraScreen() {
   };
 
   const deletePhoto = () => {
-    Alert.alert("Delete Photo", "Are you sure you want to delete this photo?", [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "Delete",
-        style: "destructive",
-        onPress: () => {
-          setPhoto(null);
-          setCaptureTime("");
+    Alert.alert(
+      "Delete Photo",
+      "Are you sure you want to delete this photo?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
         },
-      },
-    ]);
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            setPhoto(null);
+            setCaptureTime("");
+          },
+        },
+      ],
+    );
   };
 
   if (!permission) {
@@ -101,8 +110,13 @@ export default function CameraScreen() {
           Camera permission is required.
         </Text>
 
-        <TouchableOpacity style={styles.button} onPress={requestPermission}>
-          <Text style={styles.buttonText}>Allow Camera</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={requestPermission}
+        >
+          <Text style={styles.buttonText}>
+            Allow Camera
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -112,7 +126,9 @@ export default function CameraScreen() {
     return (
       <View style={styles.center}>
         <ActivityIndicator size="large" color="blue" />
-        <Text style={{ marginTop: 10 }}>Opening Camera...</Text>
+        <Text style={{ marginTop: 10 }}>
+          Opening Camera...
+        </Text>
       </View>
     );
   }
@@ -121,37 +137,66 @@ export default function CameraScreen() {
     <View style={styles.container}>
       {!photo ? (
         <>
-          <CameraView ref={cameraRef} style={styles.camera} facing="back" />
+          <CameraView
+            ref={cameraRef}
+            style={styles.camera}
+            facing="back"
+          />
 
-          <TouchableOpacity style={styles.button} onPress={takePhoto}>
-            <Text style={styles.buttonText}>Capture Photo</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={takePhoto}
+          >
+            <Text style={styles.buttonText}>
+              Capture Photo
+            </Text>
           </TouchableOpacity>
         </>
       ) : (
         <>
-          <Image source={{ uri: photo }} style={styles.image} />
+          <Image
+            source={{ uri: photo }}
+            style={styles.image}
+          />
 
-          <Text style={styles.time}>Capture Time: {captureTime}</Text>
+          <Text style={styles.time}>
+            Capture Time: {captureTime}
+          </Text>
 
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#28A745" }]}
+            style={[
+              styles.button,
+              { backgroundColor: "#28A745" },
+            ]}
             onPress={savePhoto}
           >
-            <Text style={styles.buttonText}>Save Image</Text>
+            <Text style={styles.buttonText}>
+              Save Image
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#FF9800" }]}
+            style={[
+              styles.button,
+              { backgroundColor: "#FF9800" },
+            ]}
             onPress={retakePhoto}
           >
-            <Text style={styles.buttonText}>Retake Photo</Text>
+            <Text style={styles.buttonText}>
+              Retake Photo
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#E53935" }]}
+            style={[
+              styles.button,
+              { backgroundColor: "#E53935" },
+            ]}
             onPress={deletePhoto}
           >
-            <Text style={styles.buttonText}>Delete Photo</Text>
+            <Text style={styles.buttonText}>
+              Delete Photo
+            </Text>
           </TouchableOpacity>
         </>
       )}

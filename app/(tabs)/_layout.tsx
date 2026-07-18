@@ -62,15 +62,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="preview"
-        options={{
-          title: "Preview",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={25} name="doc.text.fill" color={color} />
-          ),
-        }}
-      />
+      <Tabs.Screen name="preview" options={{ href: null }} />
       <Tabs.Screen name="camera" options={{ href: null }} />
       <Tabs.Screen name="location" options={{ href: null }} />
       <Tabs.Screen name="clipboard" options={{ href: null }} />

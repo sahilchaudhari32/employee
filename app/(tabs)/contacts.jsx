@@ -1,6 +1,11 @@
 import * as Clipboard from "expo-clipboard";
 import * as Contacts from "expo-contacts";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   Alert,
   FlatList,
@@ -23,13 +28,18 @@ export default function ContactsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const load = useCallback(async () => {
     setRefreshing(true);
-    const permission = await Contacts.requestPermissionsAsync();
+    const permission =
+      await Contacts.requestPermissionsAsync();
     if (permission.granted) {
       const result = await Contacts.getContactsAsync({
         fields: [Contacts.Fields.PhoneNumbers],
       });
       setItems(result.data);
-    } else Alert.alert("Permission required", "Contacts access is needed.");
+    } else
+      Alert.alert(
+        "Permission required",
+        "Contacts access is needed.",
+      );
     setRefreshing(false);
   }, []);
   useEffect(() => {
@@ -59,11 +69,18 @@ export default function ContactsScreen() {
       <FlatList
         data={list}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={load} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={load}
+          />
         }
         ListEmptyComponent={
           <Text
-            style={{ textAlign: "center", color: colors.muted, marginTop: 30 }}
+            style={{
+              textAlign: "center",
+              color: colors.muted,
+              marginTop: 30,
+            }}
           >
             No contacts found.
           </Text>
@@ -73,7 +90,12 @@ export default function ContactsScreen() {
           const number = item.phoneNumbers?.[0]?.number;
           return (
             <Card>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
                 <View
                   style={{
                     width: 42,
@@ -84,15 +106,30 @@ export default function ContactsScreen() {
                     justifyContent: "center",
                   }}
                 >
-                  <Text style={{ fontWeight: "800", color: colors.primary }}>
+                  <Text
+                    style={{
+                      fontWeight: "800",
+                      color: colors.primary,
+                    }}
+                  >
                     {(item.name || "?")[0].toUpperCase()}
                   </Text>
                 </View>
                 <View style={{ marginLeft: 12, flex: 1 }}>
-                  <Text style={{ fontWeight: "800", color: colors.ink }}>
+                  <Text
+                    style={{
+                      fontWeight: "800",
+                      color: colors.ink,
+                    }}
+                  >
                     {item.name || "Unnamed contact"}
                   </Text>
-                  <Text style={{ color: colors.muted, marginTop: 4 }}>
+                  <Text
+                    style={{
+                      color: colors.muted,
+                      marginTop: 4,
+                    }}
+                  >
                     {number || "No Number"}
                   </Text>
                 </View>
@@ -100,10 +137,18 @@ export default function ContactsScreen() {
                   <Pressable
                     onPress={() => {
                       Clipboard.setStringAsync(number);
-                      Alert.alert("Copied", "Contact number copied.");
+                      Alert.alert(
+                        "Copied",
+                        "Contact number copied.",
+                      );
                     }}
                   >
-                    <Text style={{ color: colors.primary, fontWeight: "800" }}>
+                    <Text
+                      style={{
+                        color: colors.primary,
+                        fontWeight: "800",
+                      }}
+                    >
                       Copy
                     </Text>
                   </Pressable>

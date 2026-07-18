@@ -1,7 +1,12 @@
 import * as Clipboard from "expo-clipboard";
 import * as Location from "expo-location";
 import { useState } from "react";
-import { ActivityIndicator, Alert, StyleSheet, Text } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  StyleSheet,
+  Text,
+} from "react-native";
 import {
   Button,
   Card,
@@ -15,9 +20,13 @@ export default function LocationScreen() {
   const [loading, setLoading] = useState(false);
   const refresh = async () => {
     setLoading(true);
-    const permission = await Location.requestForegroundPermissionsAsync();
+    const permission =
+      await Location.requestForegroundPermissionsAsync();
     if (!permission.granted) {
-      Alert.alert("Permission required", "Location access is needed.");
+      Alert.alert(
+        "Permission required",
+        "Location access is needed.",
+      );
       setLoading(false);
       return;
     }
@@ -29,8 +38,13 @@ export default function LocationScreen() {
   };
   const copy = async () => {
     if (!data) return;
-    await Clipboard.setStringAsync(`${data.latitude}, ${data.longitude}`);
-    Alert.alert("Copied", "Current location copied to clipboard.");
+    await Clipboard.setStringAsync(
+      `${data.latitude}, ${data.longitude}`,
+    );
+    Alert.alert(
+      "Copied",
+      "Current location copied to clipboard.",
+    );
   };
   return (
     <SafeScreen style={uiStyles.screen}>
@@ -40,32 +54,56 @@ export default function LocationScreen() {
       />
       <Card>
         {loading ? (
-          <ActivityIndicator size="large" color={colors.primary} />
+          <ActivityIndicator
+            size="large"
+            color={colors.primary}
+          />
         ) : data ? (
           <>
-            <Text style={styles.heading}>Current position</Text>
-            <Text style={styles.latitude}>Latitude: {data.latitude}</Text>
-            <Text style={styles.detail}>Longitude: {data.longitude}</Text>
+            <Text style={styles.heading}>
+              Current position
+            </Text>
+            <Text style={styles.latitude}>
+              Latitude: {data.latitude}
+            </Text>
+            <Text style={styles.detail}>
+              Longitude: {data.longitude}
+            </Text>
             <Text style={styles.detail}>
               Accuracy: {Math.round(data.accuracy || 0)} m
             </Text>
           </>
         ) : (
-          <Text style={styles.empty}>No location captured yet.</Text>
+          <Text style={styles.empty}>
+            No location captured yet.
+          </Text>
         )}
       </Card>
       <Button
-        title={data ? "Refresh location" : "Get current location"}
+        title={
+          data ? "Refresh location" : "Get current location"
+        }
         onPress={refresh}
       />
-      <Button title="Copy current location" secondary onPress={copy} />
+      <Button
+        title="Copy current location"
+        secondary
+        onPress={copy}
+      />
     </SafeScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  heading: { color: colors.ink, fontSize: 18, fontWeight: "800" },
+  heading: {
+    color: colors.ink,
+    fontSize: 18,
+    fontWeight: "800",
+  },
   latitude: { color: colors.muted, marginTop: 14 },
-  detail: { color: colors.muted, marginTop: 8 },
+  detail: {
+    color: colors.muted,
+    marginTop: 8,
+  },
   empty: { color: colors.muted },
 });

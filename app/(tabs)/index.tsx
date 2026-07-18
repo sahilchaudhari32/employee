@@ -1,5 +1,11 @@
 import { router } from "expo-router";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 import {
   Card,
@@ -36,7 +42,9 @@ export default function Dashboard() {
         />
 
         <Card style={styles.heroCard}>
-          <Text style={styles.heroLabel}>TODAY&apos;S SURVEYS</Text>
+          <Text style={styles.heroLabel}>
+            TODAY&apos;S SURVEYS
+          </Text>
           <Text
             style={{
               color: "#fff",
@@ -47,7 +55,9 @@ export default function Dashboard() {
           >
             {todaysSurveyCount}
           </Text>
-          <Text style={{ color: "#DBEAFE" }}>Keep your field work moving.</Text>
+          <Text style={{ color: "#DBEAFE" }}>
+            Keep your field work moving.
+          </Text>
         </Card>
 
         <Text
@@ -61,7 +71,13 @@ export default function Dashboard() {
           Quick actions
         </Text>
 
-        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: 12,
+          }}
+        >
           {quickActions.map(({ label, route }) => (
             <Pressable
               key={route}
@@ -73,10 +89,20 @@ export default function Dashboard() {
                 width: "47%",
               }}
             >
-              <Text style={{ color: colors.ink, fontWeight: "800" }}>
+              <Text
+                style={{
+                  color: colors.ink,
+                  fontWeight: "800",
+                }}
+              >
                 {label}
               </Text>
-              <Text style={{ color: colors.muted, marginTop: 8 }}>
+              <Text
+                style={{
+                  color: colors.muted,
+                  marginTop: 8,
+                }}
+              >
                 Open module →
               </Text>
             </Pressable>
@@ -106,17 +132,28 @@ export default function Dashboard() {
           >
             <Card>
               <Text
-                style={{ color: colors.ink, fontSize: 16, fontWeight: "800" }}
+                style={{
+                  color: colors.ink,
+                  fontSize: 16,
+                  fontWeight: "800",
+                }}
               >
                 {survey.siteName}
               </Text>
-              <Text style={{ color: colors.muted, marginTop: 5 }}>
+              <Text
+                style={{
+                  color: colors.muted,
+                  marginTop: 5,
+                }}
+              >
                 {survey.clientName} · {survey.date}
               </Text>
               <Text
                 style={{
                   color:
-                    survey.priority === "High" ? "#DC2626" : colors.primary,
+                    survey.priority === "High"
+                      ? "#DC2626"
+                      : colors.primary,
                   fontWeight: "700",
                   marginTop: 8,
                 }}
@@ -134,6 +171,11 @@ export default function Dashboard() {
 const styles = StyleSheet.create({
   heroCard: { backgroundColor: colors.primary },
   heroLabel: { color: "#BFDBFE", fontWeight: "700" },
-  heroCount: { color: "#fff", fontSize: 42, fontWeight: "900", marginTop: 4 },
+  heroCount: {
+    color: "#fff",
+    fontSize: 42,
+    fontWeight: "900",
+    marginTop: 4,
+  },
   heroText: { color: "#DBEAFE" },
 });

@@ -1,5 +1,11 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { Alert, Image, ScrollView, StyleSheet, Text } from "react-native";
+import {
+  Alert,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+} from "react-native";
 import {
   Button,
   Card,
@@ -12,19 +18,28 @@ import { useSurveys } from "@/context/SurveyContext";
 export default function Preview() {
   const { draft, surveys, createSurvey } = useSurveys();
   const { id } = useLocalSearchParams();
-  const data = id ? surveys.find((s) => s.id === id) || draft : draft;
+  const data = id
+    ? surveys.find((s) => s.id === id) || draft
+    : draft;
   const submit = () => {
     if (id) {
-      Alert.alert("Submitted", "This survey is already in history.");
+      Alert.alert(
+        "Submitted",
+        "This survey is already in history.",
+      );
       return;
     }
     const saved = createSurvey(data);
-    Alert.alert("Survey submitted", `${saved.id} was saved successfully.`, [
-      {
-        text: "View history",
-        onPress: () => router.replace("/(tabs)/history"),
-      },
-    ]);
+    Alert.alert(
+      "Survey submitted",
+      `${saved.id} was saved successfully.`,
+      [
+        {
+          text: "View history",
+          onPress: () => router.replace("/(tabs)/history"),
+        },
+      ],
+    );
   };
   return (
     <SafeScreen>
@@ -34,7 +49,9 @@ export default function Preview() {
       >
         <Header
           title="Survey preview"
-          subtitle={id ? data.id : "Review before submitting"}
+          subtitle={
+            id ? data.id : "Review before submitting"
+          }
           back
         />
         <Card>
@@ -54,12 +71,17 @@ export default function Preview() {
             ["Notes", data.notes || "No notes"],
           ].map(([label, value]) => (
             <Text key={label} style={styles.detail}>
-              <Text style={styles.detailLabel}>{label}: </Text>
+              <Text style={styles.detailLabel}>
+                {label}:{" "}
+              </Text>
               {value}
             </Text>
           ))}
           {data.photo && (
-            <Image source={{ uri: data.photo }} style={styles.photo} />
+            <Image
+              source={{ uri: data.photo }}
+              style={styles.photo}
+            />
           )}
         </Card>
         {!id && (
@@ -69,7 +91,10 @@ export default function Preview() {
               secondary
               onPress={() => router.back()}
             />
-            <Button title="Submit survey" onPress={submit} />
+            <Button
+              title="Submit survey"
+              onPress={submit}
+            />
           </>
         )}
       </ScrollView>
@@ -78,7 +103,10 @@ export default function Preview() {
 }
 
 const styles = StyleSheet.create({
-  detail: { color: colors.ink, marginBottom: 12 },
+  detail: {
+    color: colors.ink,
+    marginBottom: 12,
+  },
   detailLabel: { fontWeight: "800" },
   photo: { borderRadius: 12, height: 180, marginTop: 4 },
 });

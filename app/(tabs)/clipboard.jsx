@@ -18,7 +18,8 @@ export default function ClipboardScreen() {
     setValue(text);
     Alert.alert("Copied", "Text copied to clipboard.");
   };
-  const paste = async () => setNotes(await Clipboard.getStringAsync());
+  const paste = async () =>
+    setNotes(await Clipboard.getStringAsync());
   const clear = async () => {
     await Clipboard.setStringAsync("");
     setValue("");
@@ -26,16 +27,24 @@ export default function ClipboardScreen() {
   };
   return (
     <SafeScreen style={uiStyles.screen}>
-      <Header title="Clipboard" subtitle="Move useful field data quickly" />
+      <Header
+        title="Clipboard"
+        subtitle="Move useful field data quickly"
+      />
       <Card>
         <Text style={styles.heading}>Quick copy</Text>
-        <Button title="Copy sample survey ID" onPress={() => copy("SF-1001")} />
+        <Button
+          title="Copy sample survey ID"
+          onPress={() => copy("SF-1001")}
+        />
         <Button
           title="Copy current location"
           secondary
           onPress={() => copy("Location not captured")}
         />
-        <Text style={styles.status}>{value || "Clipboard is ready."}</Text>
+        <Text style={styles.status}>
+          {value || "Clipboard is ready."}
+        </Text>
       </Card>
       <Field
         label="Paste notes"
@@ -44,8 +53,15 @@ export default function ClipboardScreen() {
         onChangeText={setNotes}
         multiline
       />
-      <Button title="Paste from clipboard" onPress={paste} />
-      <Button title="Clear clipboard data" danger onPress={clear} />
+      <Button
+        title="Paste from clipboard"
+        onPress={paste}
+      />
+      <Button
+        title="Clear clipboard data"
+        danger
+        onPress={clear}
+      />
     </SafeScreen>
   );
 }

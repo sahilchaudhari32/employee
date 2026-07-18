@@ -1,5 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 import {
   Card,
@@ -20,22 +25,31 @@ export default function Profile() {
         contentContainerStyle={profileStyles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Header title="Profile" subtitle="Your field survey workspace" />
+        <Header
+          title="Profile"
+          subtitle="Your field survey workspace"
+        />
 
         <Card style={profileStyles.profileCard}>
           <View style={profileStyles.avatar}>
             <Text style={profileStyles.avatarText}>SC</Text>
           </View>
           <View style={profileStyles.profileInfo}>
-            <Text style={profileStyles.name}>Sahil Chaudhari</Text>
-            <Text style={profileStyles.role}>Field Survey Student</Text>
+            <Text style={profileStyles.name}>
+              Sahil Chaudhari
+            </Text>
+            <Text style={profileStyles.role}>
+              Field Survey Student
+            </Text>
             <View style={profileStyles.verified}>
               <Ionicons
                 name="checkmark-circle"
                 size={15}
                 color={colors.success}
               />
-              <Text style={profileStyles.verifiedText}>Active account</Text>
+              <Text style={profileStyles.verifiedText}>
+                Active account
+              </Text>
             </View>
           </View>
         </Card>
@@ -45,13 +59,17 @@ export default function Profile() {
           <Stat
             label="Completed"
             value={
-              surveys.filter((survey) => survey.status === "Completed").length
+              surveys.filter(
+                (survey) => survey.status === "Completed",
+              ).length
             }
           />
           <Stat label="Course" value="CSE" />
         </View>
 
-        <Text style={profileStyles.sectionTitle}>Student details</Text>
+        <Text style={profileStyles.sectionTitle}>
+          Student details
+        </Text>
         <Card>
           <InfoRow
             icon="card-outline"
@@ -71,7 +89,9 @@ export default function Profile() {
           />
         </Card>
 
-        <Text style={profileStyles.sectionTitle}>About the app</Text>
+        <Text style={profileStyles.sectionTitle}>
+          About the app
+        </Text>
         <Card style={profileStyles.aboutCard}>
           <View style={profileStyles.aboutIcon}>
             <Ionicons
@@ -81,8 +101,9 @@ export default function Profile() {
             />
           </View>
           <Text style={profileStyles.aboutText}>
-            Capture reliable site information, photos, contacts, notes, and
-            location details in one field-ready workspace.
+            Capture reliable site information, photos,
+            contacts, notes, and location details in one
+            field-ready workspace.
           </Text>
         </Card>
       </ScrollView>
@@ -101,8 +122,17 @@ function Stat({ label, value }) {
 
 function InfoRow({ icon, label, value, last = false }) {
   return (
-    <View style={[profileStyles.infoRow, !last && profileStyles.infoBorder]}>
-      <Ionicons name={icon} size={20} color={colors.primary} />
+    <View
+      style={[
+        profileStyles.infoRow,
+        !last && profileStyles.infoBorder,
+      ]}
+    >
+      <Ionicons
+        name={icon}
+        size={20}
+        color={colors.primary}
+      />
       <View style={profileStyles.infoText}>
         <Text style={profileStyles.infoLabel}>{label}</Text>
         <Text style={profileStyles.infoValue}>{value}</Text>
@@ -127,9 +157,17 @@ const profileStyles = StyleSheet.create({
     justifyContent: "center",
     width: 68,
   },
-  avatarText: { color: colors.primary, fontSize: 22, fontWeight: "900" },
+  avatarText: {
+    color: colors.primary,
+    fontSize: 22,
+    fontWeight: "900",
+  },
   profileInfo: { marginLeft: 16 },
-  name: { color: colors.white, fontSize: 20, fontWeight: "900" },
+  name: {
+    color: colors.white,
+    fontSize: 20,
+    fontWeight: "900",
+  },
   role: { color: "#DBEAFE", marginTop: 4 },
   verified: {
     alignItems: "center",
@@ -137,8 +175,16 @@ const profileStyles = StyleSheet.create({
     gap: 5,
     marginTop: 9,
   },
-  verifiedText: { color: "#BBF7D0", fontSize: 12, fontWeight: "700" },
-  statsRow: { flexDirection: "row", gap: 10, marginBottom: 22 },
+  verifiedText: {
+    color: "#BBF7D0",
+    fontSize: 12,
+    fontWeight: "700",
+  },
+  statsRow: {
+    flexDirection: "row",
+    gap: 10,
+    marginBottom: 22,
+  },
   stat: {
     alignItems: "center",
     backgroundColor: colors.white,
@@ -146,16 +192,31 @@ const profileStyles = StyleSheet.create({
     flex: 1,
     padding: 14,
   },
-  statValue: { color: colors.ink, fontSize: 19, fontWeight: "900" },
-  statLabel: { color: colors.muted, fontSize: 12, marginTop: 4 },
+  statValue: {
+    color: colors.ink,
+    fontSize: 19,
+    fontWeight: "900",
+  },
+  statLabel: {
+    color: colors.muted,
+    fontSize: 12,
+    marginTop: 4,
+  },
   sectionTitle: {
     color: colors.ink,
     fontSize: 18,
     fontWeight: "800",
     marginBottom: 10,
   },
-  infoRow: { alignItems: "center", flexDirection: "row", paddingVertical: 13 },
-  infoBorder: { borderBottomColor: colors.border, borderBottomWidth: 1 },
+  infoRow: {
+    alignItems: "center",
+    flexDirection: "row",
+    paddingVertical: 13,
+  },
+  infoBorder: {
+    borderBottomColor: colors.border,
+    borderBottomWidth: 1,
+  },
   infoText: { marginLeft: 13 },
   infoLabel: { color: colors.muted, fontSize: 12 },
   infoValue: {
@@ -173,5 +234,10 @@ const profileStyles = StyleSheet.create({
     justifyContent: "center",
     width: 44,
   },
-  aboutText: { color: colors.muted, flex: 1, lineHeight: 20, marginLeft: 14 },
+  aboutText: {
+    color: colors.muted,
+    flex: 1,
+    lineHeight: 20,
+    marginLeft: 14,
+  },
 });

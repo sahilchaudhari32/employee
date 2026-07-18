@@ -1,6 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const colors = {
@@ -18,24 +24,42 @@ export function Header({ title, subtitle, back = false }) {
   return (
     <View style={styles.header}>
       {back && (
-        <Pressable onPress={() => router.back()} style={styles.back}>
-          <Ionicons name="arrow-back" size={22} color={colors.ink} />
+        <Pressable
+          onPress={() => router.back()}
+          style={styles.back}
+        >
+          <Ionicons
+            name="arrow-back"
+            size={22}
+            color={colors.ink}
+          />
         </Pressable>
       )}
       <View>
         <Text style={styles.title}>{title}</Text>
-        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+        {subtitle && (
+          <Text style={styles.subtitle}>{subtitle}</Text>
+        )}
       </View>
     </View>
   );
 }
 /** @param {{ children: any, style?: any }} props */
-export function SafeScreen({ children, style = undefined }) {
-  return <SafeAreaView style={[styles.safe, style]}>{children}</SafeAreaView>;
+export function SafeScreen({
+  children,
+  style = undefined,
+}) {
+  return (
+    <SafeAreaView style={[styles.safe, style]}>
+      {children}
+    </SafeAreaView>
+  );
 }
 /** @param {{ children: any, style?: any }} props */
 export function Card({ children, style = undefined }) {
-  return <View style={[styles.card, style]}>{children}</View>;
+  return (
+    <View style={[styles.card, style]}>{children}</View>
+  );
 }
 export function Field({ label, ...props }) {
   return (
@@ -43,13 +67,21 @@ export function Field({ label, ...props }) {
       <Text style={styles.label}>{label}</Text>
       <TextInput
         placeholderTextColor="#9CA3AF"
-        style={[styles.input, props.multiline && styles.multiline]}
+        style={[
+          styles.input,
+          props.multiline && styles.multiline,
+        ]}
         {...props}
       />
     </View>
   );
 }
-export function Button({ title, onPress, secondary = false, danger = false }) {
+export function Button({
+  title,
+  onPress,
+  secondary = false,
+  danger = false,
+}) {
   return (
     <Pressable
       onPress={onPress}
@@ -59,7 +91,12 @@ export function Button({ title, onPress, secondary = false, danger = false }) {
         danger && styles.danger,
       ]}
     >
-      <Text style={[styles.buttonText, secondary && styles.secondaryText]}>
+      <Text
+        style={[
+          styles.buttonText,
+          secondary && styles.secondaryText,
+        ]}
+      >
         {title}
       </Text>
     </Pressable>
@@ -71,7 +108,12 @@ export function Pill({ label, active, onPress }) {
       onPress={onPress}
       style={[styles.pill, active && styles.pillActive]}
     >
-      <Text style={[styles.pillText, active && styles.pillTextActive]}>
+      <Text
+        style={[
+          styles.pillText,
+          active && styles.pillTextActive,
+        ]}
+      >
         {label}
       </Text>
     </Pressable>
@@ -79,7 +121,11 @@ export function Pill({ label, active, onPress }) {
 }
 export const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
-  screen: { flex: 1, backgroundColor: colors.background, padding: 20 },
+  screen: {
+    flex: 1,
+    backgroundColor: colors.background,
+    padding: 20,
+  },
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -130,7 +176,11 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 4,
   },
-  buttonText: { color: colors.white, fontWeight: "800", fontSize: 16 },
+  buttonText: {
+    color: colors.white,
+    fontWeight: "800",
+    fontSize: 16,
+  },
   secondary: { backgroundColor: colors.pale },
   secondaryText: { color: colors.primary },
   danger: { backgroundColor: colors.danger },
@@ -142,7 +192,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginRight: 8,
   },
-  pillActive: { backgroundColor: colors.primary, borderColor: colors.primary },
+  pillActive: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+  },
   pillText: { color: colors.muted, fontWeight: "700" },
   pillTextActive: { color: colors.white },
 });

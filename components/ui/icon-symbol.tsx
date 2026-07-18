@@ -20,7 +20,8 @@ const MAPPING = {
   'chevron.right': 'chevron-right',
   'checkmark.seal.fill': 'check-circle',
   'clock.badge.fill': 'timer',
-  'person.fill': 'person'
+  'person.fill': 'person',
+  'person.2.fill': 'person'
 } as IconMapping;
 
 /**

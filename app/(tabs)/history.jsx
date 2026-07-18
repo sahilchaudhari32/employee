@@ -1,6 +1,12 @@
 import { router } from "expo-router";
 import { useMemo, useState } from "react";
-import { Alert, FlatList, Pressable, Text, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
 import {
   Card,
   Field,
@@ -39,7 +45,9 @@ export default function History() {
           value={query}
           onChangeText={setQuery}
         />
-        <View style={{ flexDirection: "row", marginBottom: 12 }}>
+        <View
+          style={{ flexDirection: "row", marginBottom: 12 }}
+        >
           {["All", "High", "Medium", "Low"].map((p) => (
             <Pill
               key={p}
@@ -91,14 +99,21 @@ export default function History() {
                   <Text
                     style={{
                       color:
-                        item.priority === "High" ? "#DC2626" : colors.primary,
+                        item.priority === "High"
+                          ? "#DC2626"
+                          : colors.primary,
                       fontWeight: "700",
                     }}
                   >
                     {item.priority}
                   </Text>
                 </View>
-                <Text style={{ color: colors.muted, marginTop: 6 }}>
+                <Text
+                  style={{
+                    color: colors.muted,
+                    marginTop: 6,
+                  }}
+                >
                   {item.clientName} · {item.date}
                 </Text>
                 <Pressable
@@ -111,7 +126,8 @@ export default function History() {
                         {
                           text: "Delete",
                           style: "destructive",
-                          onPress: () => deleteSurvey(item.id),
+                          onPress: () =>
+                            deleteSurvey(item.id),
                         },
                       ],
                     )
