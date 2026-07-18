@@ -1,33 +1,10 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Pressable, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
 
 import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
-
-function MenuButton() {
-  const navigation = useNavigation();
-  return (
-    <Pressable
-      onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-      style={styles.menuButton}
-      accessibilityLabel="Open navigation menu"
-    >
-      <Ionicons name="menu" size={26} color="#172033" />
-    </Pressable>
-  );
-}
-
-const styles = StyleSheet.create({
-  menuButton: {
-    marginLeft: 16,
-    padding: 4,
-  },
-});
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -36,8 +13,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: true,
-        headerLeft: () => <MenuButton />,
+        headerShown: false,
         tabBarButton: HapticTab,
       }}
     >

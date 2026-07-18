@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
@@ -22,11 +23,20 @@ export const colors = {
   water: "#7FCDFF",
 };
 export function Header({ title, subtitle, back = false }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
-      {back && (
+      {back ? (
         <Pressable onPress={() => router.back()} style={styles.back}>
           <Ionicons name="arrow-back" size={22} color={colors.ink} />
+        </Pressable>
+      ) : (
+        <Pressable
+          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+          style={styles.menuButton}
+          accessibilityLabel="Open navigation menu"
+        >
+          <Ionicons name="menu" size={28} color={colors.primary} />
         </Pressable>
       )}
       <View>
@@ -43,7 +53,7 @@ export function SafeScreen({ children, style = undefined }) {
       colors={["#DFF7FF", "#7FCDFF", "#EEF2FF"]}
       style={styles.safe}
     >
-      <SafeAreaView style={style}>{children}</SafeAreaView>
+      <SafeAreaView style={[styles.safeArea, style]}>{children}</SafeAreaView>
     </LinearGradient>
   );
 }
@@ -107,6 +117,7 @@ export function Pill({ label, active, onPress }) {
 }
 export const styles = StyleSheet.create({
   safe: { flex: 1 },
+  safeArea: { flex: 1 },
   screen: {
     flex: 1,
     backgroundColor: "transparent",
@@ -120,6 +131,7 @@ export const styles = StyleSheet.create({
     paddingTop: 4,
   },
   back: { padding: 4 },
+  menuButton: { padding: 4 },
   title: {
     fontSize: 30,
     fontWeight: "800",
