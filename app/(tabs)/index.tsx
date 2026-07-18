@@ -1,12 +1,12 @@
 import { router } from "expo-router";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import {
   Card,
   Header,
   SafeScreen,
   colors,
-  styles,
+  styles as uiStyles,
 } from "@/components/SurveyUI";
 import { useSurveys } from "@/context/SurveyContext";
 
@@ -28,17 +28,15 @@ export default function Dashboard() {
     <SafeScreen>
       <ScrollView
         contentContainerStyle={{ paddingBottom: 28 }}
-        style={styles.screen}
+        style={uiStyles.screen}
       >
         <Header
           title="Good morning, Sahil"
           subtitle="Ready for your next inspection?"
         />
 
-        <Card style={{ backgroundColor: colors.primary }}>
-          <Text style={{ color: "#BFDBFE", fontWeight: "700" }}>
-            TODAY&apos;S SURVEYS
-          </Text>
+        <Card style={styles.heroCard}>
+          <Text style={styles.heroLabel}>TODAY&apos;S SURVEYS</Text>
           <Text
             style={{
               color: "#fff",
@@ -132,3 +130,10 @@ export default function Dashboard() {
     </SafeScreen>
   );
 }
+
+const styles = StyleSheet.create({
+  heroCard: { backgroundColor: colors.primary },
+  heroLabel: { color: "#BFDBFE", fontWeight: "700" },
+  heroCount: { color: "#fff", fontSize: 42, fontWeight: "900", marginTop: 4 },
+  heroText: { color: "#DBEAFE" },
+});
