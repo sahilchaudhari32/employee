@@ -67,6 +67,7 @@ export default function ClipboardScreen() {
 }
 
 const styles = StyleSheet.create({
-  heading: { color: colors.ink, fontWeight: "800" },
+  heading: {
+    color: colors.ink, fontWeight: "800" },
   status: { color: colors.muted, marginTop: 12 },
 });
