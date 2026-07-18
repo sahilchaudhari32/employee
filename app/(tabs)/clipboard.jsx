@@ -1,5 +1,52 @@
-import * as Clipboard from 'expo-clipboard';
-import { useState } from 'react';
-import { Alert, Text, View } from 'react-native';
-import { Button, Card, Field, Header, colors, styles } from '@/components/SurveyUI';
-export default function ClipboardScreen(){const [value,setValue]=useState('');const [notes,setNotes]=useState('');const copy=async(text)=>{await Clipboard.setStringAsync(text);setValue(text);Alert.alert('Copied','Text copied to clipboard.');};const paste=async()=>setNotes(await Clipboard.getStringAsync());const clear=async()=>{await Clipboard.setStringAsync('');setValue('');setNotes('');};return <View style={styles.screen}><Header title="Clipboard" subtitle="Move useful field data quickly"/><Card><Text style={{fontWeight:'800',color:colors.ink}}>Quick copy</Text><Button title="Copy sample survey ID" onPress={()=>copy('SF-1001')}/><Button title="Copy current location" secondary onPress={()=>copy('Location not captured')}/><Text style={{color:colors.muted,marginTop:12}}>{value||'Clipboard is ready.'}</Text></Card><Field label="Paste notes" placeholder="Paste clipboard content here" value={notes} onChangeText={setNotes} multiline/><Button title="Paste from clipboard" onPress={paste}/><Button title="Clear clipboard data" danger onPress={clear}/></View>}
+import * as Clipboard from "expo-clipboard";
+import { useState } from "react";
+import { Alert, Text, View } from "react-native";
+import {
+  Button,
+  Card,
+  Field,
+  Header,
+  colors,
+  styles,
+} from "@/components/SurveyUI";
+export default function ClipboardScreen() {
+  const [value, setValue] = useState("");
+  const [notes, setNotes] = useState("");
+  const copy = async (text) => {
+    await Clipboard.setStringAsync(text);
+    setValue(text);
+    Alert.alert("Copied", "Text copied to clipboard.");
+  };
+  const paste = async () => setNotes(await Clipboard.getStringAsync());
+  const clear = async () => {
+    await Clipboard.setStringAsync("");
+    setValue("");
+    setNotes("");
+  };
+  return (
+    <View style={styles.screen}>
+      <Header title="Clipboard" subtitle="Move useful field data quickly" />
+      <Card>
+        <Text style={{ fontWeight: "800", color: colors.ink }}>Quick copy</Text>
+        <Button title="Copy sample survey ID" onPress={() => copy("SF-1001")} />
+        <Button
+          title="Copy current location"
+          secondary
+          onPress={() => copy("Location not captured")}
+        />
+        <Text style={{ color: colors.muted, marginTop: 12 }}>
+          {value || "Clipboard is ready."}
+        </Text>
+      </Card>
+      <Field
+        label="Paste notes"
+        placeholder="Paste clipboard content here"
+        value={notes}
+        onChangeText={setNotes}
+        multiline
+      />
+      <Button title="Paste from clipboard" onPress={paste} />
+      <Button title="Clear clipboard data" danger onPress={clear} />
+    </View>
+  );
+}

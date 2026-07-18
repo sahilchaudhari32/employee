@@ -1,5 +1,100 @@
-import { router } from 'expo-router';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-import { Card, Header, colors, styles } from '@/components/SurveyUI';
-import { useSurveys } from '@/context/SurveyContext';
-export default function Dashboard() { const { surveys } = useSurveys(); return <ScrollView style={styles.screen}><Header title="Good morning, Sahil" subtitle="Ready for your next inspection?" /><Card style={{backgroundColor:colors.primary}}><Text style={{color:'#BFDBFE',fontWeight:'700'}}>TODAY&apos;S SURVEYS</Text><Text style={{fontSize:42,fontWeight:'900',color:'#fff',marginTop:4}}>{surveys.filter((s) => s.date === new Date().toISOString().slice(0,10)).length}</Text><Text style={{color:'#DBEAFE'}}>Keep your field work moving.</Text></Card><Text style={{fontSize:19,fontWeight:'800',color:colors.ink,marginBottom:12}}>Quick actions</Text><View style={{flexDirection:'row',flexWrap:'wrap',gap:12}}>{[['New Survey','survey'],['History','history'],['Camera','camera'],['Location','location']].map(([label,path])=><Pressable key={path} onPress={()=>router.push(`/(tabs)/${path}`)} style={{width:'47%',backgroundColor:'#fff',borderRadius:16,padding:18}}><Text style={{fontWeight:'800',color:colors.ink}}>{label}</Text><Text style={{color:colors.muted,marginTop:8}}>Open module →</Text></Pressable>)}</View><Text style={{fontSize:19,fontWeight:'800',color:colors.ink,marginVertical:16}}>Recent surveys</Text>{surveys.slice(0,3).map((s)=><Card key={s.id}><Text style={{fontWeight:'800',fontSize:16,color:colors.ink}}>{s.siteName}</Text><Text style={{color:colors.muted,marginTop:5}}>{s.clientName} · {s.date}</Text><Text style={{color:s.priority==='High'?'#DC2626':colors.primary,marginTop:8,fontWeight:'700'}}>{s.priority} priority · {s.status}</Text></Card>)}</ScrollView>; }
+import { router } from "expo-router";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import { Card, Header, colors, styles } from "@/components/SurveyUI";
+import { useSurveys } from "@/context/SurveyContext";
+export default function Dashboard() {
+  const { surveys } = useSurveys();
+  return (
+    <ScrollView style={styles.screen}>
+      <Header
+        title="Good morning, Sahil"
+        subtitle="Ready for your next inspection?"
+      />
+      <Card style={{ backgroundColor: colors.primary }}>
+        <Text style={{ color: "#BFDBFE", fontWeight: "700" }}>
+          TODAY&apos;S SURVEYS
+        </Text>
+        <Text
+          style={{
+            fontSize: 42,
+            fontWeight: "900",
+            color: "#fff",
+            marginTop: 4,
+          }}
+        >
+          {
+            surveys.filter(
+              (s) => s.date === new Date().toISOString().slice(0, 10),
+            ).length
+          }
+        </Text>
+        <Text style={{ color: "#DBEAFE" }}>Keep your field work moving.</Text>
+      </Card>
+      <Text
+        style={{
+          fontSize: 19,
+          fontWeight: "800",
+          color: colors.ink,
+          marginBottom: 12,
+        }}
+      >
+        Quick actions
+      </Text>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
+        {[
+          ["New Survey", "survey"],
+          ["History", "history"],
+          ["Camera", "camera"],
+          ["Location", "location"],
+        ].map(([label, path]) => (
+          <Pressable
+            key={path}
+            onPress={() => router.push(`/(tabs)/${path}`)}
+            style={{
+              width: "47%",
+              backgroundColor: "#fff",
+              borderRadius: 16,
+              padding: 18,
+            }}
+          >
+            <Text style={{ fontWeight: "800", color: colors.ink }}>
+              {label}
+            </Text>
+            <Text style={{ color: colors.muted, marginTop: 8 }}>
+              Open module →
+            </Text>
+          </Pressable>
+        ))}
+      </View>
+      <Text
+        style={{
+          fontSize: 19,
+          fontWeight: "800",
+          color: colors.ink,
+          marginVertical: 16,
+        }}
+      >
+        Recent surveys
+      </Text>
+      {surveys.slice(0, 3).map((s) => (
+        <Card key={s.id}>
+          <Text style={{ fontWeight: "800", fontSize: 16, color: colors.ink }}>
+            {s.siteName}
+          </Text>
+          <Text style={{ color: colors.muted, marginTop: 5 }}>
+            {s.clientName} · {s.date}
+          </Text>
+          <Text
+            style={{
+              color: s.priority === "High" ? "#DC2626" : colors.primary,
+              marginTop: 8,
+              fontWeight: "700",
+            }}
+          >
+            {s.priority} priority · {s.status}
+          </Text>
+        </Card>
+      ))}
+    </ScrollView>
+  );
+}
