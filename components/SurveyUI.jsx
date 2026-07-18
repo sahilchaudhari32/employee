@@ -1,67 +1,54 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const colors = {
-  ink: "#0B2942",
-  muted: "#5D7890",
-  primary: "#087EA4",
-  pale: "#DDF6FA",
-  background: "#EAFBFC",
-  border: "rgba(255,255,255,0.75)",
+  ink: "#111827",
+  muted: "#6B7280",
+  primary: "#4F46E5",
+  secondary: "#7C3AED",
+  accent: "#06B6D4",
+  pale: "#EEF2FF",
+  background: "#EEF2FF",
+  border: "rgba(255,255,255,0.3)",
   white: "#FFFFFF",
-  danger: "#DC2626",
-  success: "#059669",
-  glass: "rgba(255,255,255,0.72)",
-  water: "#C7F1F5",
+  danger: "#EF4444",
+  success: "#22C55E",
+  warning: "#F59E0B",
+  glass: "rgba(255,255,255,0.58)",
+  water: "#C7D2FE",
 };
 export function Header({ title, subtitle, back = false }) {
   return (
     <View style={styles.header}>
       {back && (
-        <Pressable
-          onPress={() => router.back()}
-          style={styles.back}
-        >
-          <Ionicons
-            name="arrow-back"
-            size={22}
-            color={colors.ink}
-          />
+        <Pressable onPress={() => router.back()} style={styles.back}>
+          <Ionicons name="arrow-back" size={22} color={colors.ink} />
         </Pressable>
       )}
       <View>
         <Text style={styles.title}>{title}</Text>
-        {subtitle && (
-          <Text style={styles.subtitle}>{subtitle}</Text>
-        )}
+        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       </View>
     </View>
   );
 }
 /** @param {{ children: any, style?: any }} props */
-export function SafeScreen({
-  children,
-  style = undefined,
-}) {
+export function SafeScreen({ children, style = undefined }) {
   return (
-    <SafeAreaView style={[styles.safe, style]}>
-      {children}
-    </SafeAreaView>
+    <LinearGradient
+      colors={["#EEF2FF", "#E0F2FE", "#F5F3FF"]}
+      style={styles.safe}
+    >
+      <SafeAreaView style={style}>{children}</SafeAreaView>
+    </LinearGradient>
   );
 }
 /** @param {{ children: any, style?: any }} props */
 export function Card({ children, style = undefined }) {
-  return (
-    <View style={[styles.card, style]}>{children}</View>
-  );
+  return <View style={[styles.card, style]}>{children}</View>;
 }
 export function Field({ label, ...props }) {
   return (
@@ -69,40 +56,37 @@ export function Field({ label, ...props }) {
       <Text style={styles.label}>{label}</Text>
       <TextInput
         placeholderTextColor="#9CA3AF"
-        style={[
-          styles.input,
-          props.multiline && styles.multiline,
-        ]}
+        style={[styles.input, props.multiline && styles.multiline]}
         {...props}
       />
     </View>
   );
 }
-export function Button({
-  title,
-  onPress,
-  secondary = false,
-  danger = false,
-}) {
+export function Button({ title, onPress, secondary = false, danger = false }) {
   return (
-    <Pressable
-      onPress={onPress}
-      style={[
-        styles.button,
-        secondary && styles.secondary,
-        danger && styles.danger,
-      ]}
-    >
-      <Text
-        style={[
-          styles.buttonText,
-          secondary && styles.secondaryText,
-        ]}
+    <Pressable onPress={onPress} style={styles.buttonWrap}>
+      <LinearGradient
+        colors={
+          danger
+            ? [colors.danger, "#F97316"]
+            : secondary
+              ? [colors.pale, "#E0E7FF"]
+              : [colors.primary, colors.secondary]
+        }
+        style={styles.button}
       >
-        {title}
-      </Text>
+        <Text style={[styles.buttonText, secondary && styles.secondaryText]}>
+          {title}
+        </Text>
+      </LinearGradient>
     </Pressable>
   );
+}
+export function GlassCard({ children, style }) {
+  return <Card style={style}>{children}</Card>;
+}
+export function GradientButton(props) {
+  return <Button {...props} />;
 }
 export function Pill({ label, active, onPress }) {
   return (
@@ -110,22 +94,17 @@ export function Pill({ label, active, onPress }) {
       onPress={onPress}
       style={[styles.pill, active && styles.pillActive]}
     >
-      <Text
-        style={[
-          styles.pillText,
-          active && styles.pillTextActive,
-        ]}
-      >
+      <Text style={[styles.pillText, active && styles.pillTextActive]}>
         {label}
       </Text>
     </Pressable>
   );
 }
 export const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1 },
   screen: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: "transparent",
     padding: 20,
   },
   header: {
@@ -173,13 +152,16 @@ export const styles = StyleSheet.create({
     color: colors.ink,
   },
   multiline: { minHeight: 92, textAlignVertical: "top" },
-  button: {
-    backgroundColor: colors.primary,
+  buttonWrap: {
     borderRadius: 14,
+    marginTop: 4,
+    overflow: "hidden",
+  },
+  button: {
+    borderRadius: 14,
+    alignItems: "center",
     paddingVertical: 16,
     paddingHorizontal: 18,
-    alignItems: "center",
-    marginTop: 4,
   },
   buttonText: {
     color: colors.white,

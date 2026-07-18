@@ -9,6 +9,7 @@ import { Drawer } from "expo-router/drawer";
 import { router } from "expo-router";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { BlurView } from "expo-blur";
+import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
@@ -21,14 +22,14 @@ export const unstable_settings = {
 };
 
 const drawerItems = [
-  ["Dashboard", "/(tabs)"],
-  ["New Survey", "/(tabs)/survey"],
-  ["Survey History", "/(tabs)/history"],
-  ["Camera", "/(tabs)/camera"],
-  ["Contacts", "/(tabs)/contacts"],
-  ["Location", "/(tabs)/location"],
-  ["Clipboard", "/(tabs)/clipboard"],
-  ["Profile", "/(tabs)/profile"],
+  ["Dashboard", "/(tabs)", "home-outline"],
+  ["New Survey", "/(tabs)/survey", "create-outline"],
+  ["Survey History", "/(tabs)/history", "time-outline"],
+  ["Camera", "/(tabs)/camera", "camera-outline"],
+  ["Contacts", "/(tabs)/contacts", "people-outline"],
+  ["Location", "/(tabs)/location", "location-outline"],
+  ["Clipboard", "/(tabs)/clipboard", "clipboard-outline"],
+  ["Profile", "/(tabs)/profile", "person-outline"],
 ];
 
 function AppDrawerContent(props: any) {
@@ -42,19 +43,25 @@ function AppDrawerContent(props: any) {
         <Text style={drawerStyles.brandTitle}>Smart Field</Text>
         <Text style={drawerStyles.brandSubtitle}>Survey workspace</Text>
       </View>
-      <DrawerContentScrollView {...props} contentContainerStyle={drawerStyles.menu}>
-      {drawerItems.map(([label, route]) => (
-        <DrawerItem
-          key={route}
-          label={label}
-          labelStyle={drawerStyles.label}
-          style={drawerStyles.item}
-          onPress={() => {
-            navigation.dispatch(DrawerActions.closeDrawer());
-            router.push(route as any);
-          }}
-        />
-      ))}
+      <DrawerContentScrollView
+        {...props}
+        contentContainerStyle={drawerStyles.menu}
+      >
+        {drawerItems.map(([label, route, icon]) => (
+          <DrawerItem
+            key={route}
+            label={label}
+            labelStyle={drawerStyles.label}
+            style={drawerStyles.item}
+            icon={({ color, size }) => (
+              <Ionicons name={icon as any} color={color} size={size} />
+            )}
+            onPress={() => {
+              navigation.dispatch(DrawerActions.closeDrawer());
+              router.push(route as any);
+            }}
+          />
+        ))}
       </DrawerContentScrollView>
     </BlurView>
   );
@@ -63,7 +70,7 @@ function AppDrawerContent(props: any) {
 const drawerStyles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "rgba(226,249,251,0.92)" },
   brand: {
-    backgroundColor: "#087EA4",
+    backgroundColor: "#4F46E5",
     borderBottomLeftRadius: 28,
     borderBottomRightRadius: 28,
     padding: 24,
@@ -78,7 +85,7 @@ const drawerStyles = StyleSheet.create({
     marginBottom: 14,
     width: 54,
   },
-  logoText: { color: "#087EA4", fontSize: 18, fontWeight: "900" },
+  logoText: { color: "#4F46E5", fontSize: 18, fontWeight: "900" },
   brandTitle: { color: "#FFFFFF", fontSize: 24, fontWeight: "900" },
   brandSubtitle: { color: "#C7F1F5", marginTop: 4 },
   menu: { paddingHorizontal: 12, paddingTop: 18 },
