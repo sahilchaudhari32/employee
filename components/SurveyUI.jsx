@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { BlurView } from "expo-blur";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -48,7 +49,11 @@ export function SafeScreen({ children, style = undefined }) {
 }
 /** @param {{ children: any, style?: any }} props */
 export function Card({ children, style = undefined }) {
-  return <View style={[styles.card, style]}>{children}</View>;
+  return (
+    <BlurView intensity={35} tint="light" style={[styles.card, style]}>
+      {children}
+    </BlurView>
+  );
 }
 export function Field({ label, ...props }) {
   return (
