@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CameraScreen() {
   const cameraRef = useRef(null);
@@ -118,7 +119,7 @@ export default function CameraScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {!photo ? (
         <>
           <CameraView ref={cameraRef} style={styles.camera} facing="back" />
@@ -155,7 +156,7 @@ export default function CameraScreen() {
           </TouchableOpacity>
         </>
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 

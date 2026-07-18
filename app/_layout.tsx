@@ -68,7 +68,7 @@ function AppDrawerContent(props: any) {
 }
 
 const drawerStyles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "rgba(226,249,251,0.92)" },
+  container: { flex: 1, backgroundColor: "rgba(223,247,255,0.9)" },
   brand: {
     backgroundColor: "#4F46E5",
     borderBottomLeftRadius: 28,
@@ -78,7 +78,7 @@ const drawerStyles = StyleSheet.create({
   },
   logo: {
     alignItems: "center",
-    backgroundColor: "#DDF6FA",
+    backgroundColor: "#DFF7FF",
     borderRadius: 18,
     height: 54,
     justifyContent: "center",

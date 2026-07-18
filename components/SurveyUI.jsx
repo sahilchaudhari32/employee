@@ -11,15 +11,15 @@ export const colors = {
   primary: "#4F46E5",
   secondary: "#7C3AED",
   accent: "#06B6D4",
-  pale: "#EEF2FF",
-  background: "#EEF2FF",
+  pale: "#DFF7FF",
+  background: "#DFF7FF",
   border: "rgba(255,255,255,0.3)",
   white: "#FFFFFF",
   danger: "#EF4444",
   success: "#22C55E",
   warning: "#F59E0B",
   glass: "rgba(255,255,255,0.58)",
-  water: "#C7D2FE",
+  water: "#7FCDFF",
 };
 export function Header({ title, subtitle, back = false }) {
   return (
@@ -40,7 +40,7 @@ export function Header({ title, subtitle, back = false }) {
 export function SafeScreen({ children, style = undefined }) {
   return (
     <LinearGradient
-      colors={["#EEF2FF", "#E0F2FE", "#F5F3FF"]}
+      colors={["#DFF7FF", "#7FCDFF", "#EEF2FF"]}
       style={styles.safe}
     >
       <SafeAreaView style={style}>{children}</SafeAreaView>
