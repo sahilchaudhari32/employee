@@ -100,10 +100,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "800",
   },
-  latitude: { color: colors.muted, marginTop: 14 },
+  latitude: {
+    color: colors.muted,
+    marginTop: 14
+  },
+
   detail: {
     color: colors.muted,
     marginTop: 8,
   },
-  empty: { color: colors.muted },
+  empty: {
+    color: colors.muted
+  },
 });
