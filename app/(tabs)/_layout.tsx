@@ -40,7 +40,7 @@ export default function TabLayout() {
         options={{
           title: "History",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="clock.fill" color={color} />
+            <IconSymbol size={28} name="clock.badge.fill" color={color} />
           ),
         }}
       />
@@ -53,11 +53,27 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="contacts"
+        options={{
+          title: "Contacts",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={25} name="person.2.fill" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="preview"
+        options={{
+          title: "Preview",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={25} name="doc.text.fill" color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen name="camera" options={{ href: null }} />
-      <Tabs.Screen name="contacts" options={{ href: null }} />
       <Tabs.Screen name="location" options={{ href: null }} />
       <Tabs.Screen name="clipboard" options={{ href: null }} />
-      <Tabs.Screen name="preview" options={{ href: null }} />
     </Tabs>
   );
 }
