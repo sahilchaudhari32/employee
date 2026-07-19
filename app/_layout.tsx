@@ -1,9 +1,7 @@
 import {
   DarkTheme,
   DefaultTheme,
-  DrawerActions,
   ThemeProvider,
-  useNavigation,
 } from "@react-navigation/native";
 import { Drawer } from "expo-router/drawer";
 import { router } from "expo-router";
@@ -33,7 +31,6 @@ const drawerItems = [
 ];
 
 function AppDrawerContent(props: any) {
-  const navigation = useNavigation();
   return (
     <BlurView intensity={85} tint="light" style={drawerStyles.container}>
       <View style={drawerStyles.brand}>
@@ -56,7 +53,7 @@ function AppDrawerContent(props: any) {
             style={drawerStyles.item}
             android_ripple={{ color: "#BCEBFA" }}
             onPress={() => {
-              navigation.dispatch(DrawerActions.closeDrawer());
+              props.navigation.closeDrawer();
               router.push(route as any);
             }}
           >
