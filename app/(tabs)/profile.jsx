@@ -1,10 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import {
   Card,
@@ -25,31 +20,22 @@ export default function Profile() {
         contentContainerStyle={profileStyles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Header
-          title="Profile"
-          subtitle="Your field survey workspace"
-        />
+        <Header title="Profile" subtitle="Your field survey workspace" />
 
         <Card style={profileStyles.profileCard}>
           <View style={profileStyles.avatar}>
             <Text style={profileStyles.avatarText}>SC</Text>
           </View>
           <View style={profileStyles.profileInfo}>
-            <Text style={profileStyles.name}>
-              Sahil Chaudhari
-            </Text>
-            <Text style={profileStyles.role}>
-              Field Survey Student
-            </Text>
+            <Text style={profileStyles.name}>Sahil Chaudhari</Text>
+            <Text style={profileStyles.role}>Field Survey Student</Text>
             <View style={profileStyles.verified}>
               <Ionicons
                 name="checkmark-circle"
                 size={15}
                 color={colors.success}
               />
-              <Text style={profileStyles.verifiedText}>
-                Active account
-              </Text>
+              <Text style={profileStyles.verifiedText}>Active account</Text>
             </View>
           </View>
         </Card>
@@ -59,17 +45,13 @@ export default function Profile() {
           <Stat
             label="Completed"
             value={
-              surveys.filter(
-                (survey) => survey.status === "Completed",
-              ).length
+              surveys.filter((survey) => survey.status === "Completed").length
             }
           />
           <Stat label="Course" value="CSE" />
         </View>
 
-        <Text style={profileStyles.sectionTitle}>
-          Student details
-        </Text>
+        <Text style={profileStyles.sectionTitle}>Student details</Text>
         <Card>
           <InfoRow
             icon="card-outline"
@@ -84,14 +66,12 @@ export default function Profile() {
           <InfoRow
             icon="calendar-outline"
             label="Workspace"
-            value="Smart Field Survey"
+            value="Smart Survey"
             last
           />
         </Card>
 
-        <Text style={profileStyles.sectionTitle}>
-          About the app
-        </Text>
+        <Text style={profileStyles.sectionTitle}>About the app</Text>
         <Card style={profileStyles.aboutCard}>
           <View style={profileStyles.aboutIcon}>
             <Ionicons
@@ -101,9 +81,8 @@ export default function Profile() {
             />
           </View>
           <Text style={profileStyles.aboutText}>
-            Capture reliable site information, photos,
-            contacts, notes, and location details in one
-            field-ready workspace.
+            Capture reliable site information, photos, contacts, notes, and
+            location details in one field-ready workspace.
           </Text>
         </Card>
       </ScrollView>
@@ -122,17 +101,8 @@ function Stat({ label, value }) {
 
 function InfoRow({ icon, label, value, last = false }) {
   return (
-    <View
-      style={[
-        profileStyles.infoRow,
-        !last && profileStyles.infoBorder,
-      ]}
-    >
-      <Ionicons
-        name={icon}
-        size={20}
-        color={colors.primary}
-      />
+    <View style={[profileStyles.infoRow, !last && profileStyles.infoBorder]}>
+      <Ionicons name={icon} size={20} color={colors.primary} />
       <View style={profileStyles.infoText}>
         <Text style={profileStyles.infoLabel}>{label}</Text>
         <Text style={profileStyles.infoValue}>{value}</Text>

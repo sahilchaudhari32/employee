@@ -10,7 +10,7 @@ import { router } from "expo-router";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 import { SurveyProvider } from "@/context/SurveyContext";
@@ -37,11 +37,14 @@ function AppDrawerContent(props: any) {
   return (
     <BlurView intensity={85} tint="light" style={drawerStyles.container}>
       <View style={drawerStyles.brand}>
-        <View style={drawerStyles.logo}>
-          <Text style={drawerStyles.logoText}>SF</Text>
-        </View>
-        <Text style={drawerStyles.brandTitle}>Smart Field</Text>
-        <Text style={drawerStyles.brandSubtitle}>Survey workspace</Text>
+        <Image
+          source={require("@/assets/images/icon.png")}
+          style={drawerStyles.logo}
+        />
+        <Text style={drawerStyles.brandTitle}>Smart Survey</Text>
+        <Text style={drawerStyles.brandSubtitle}>
+          Field inspection workspace
+        </Text>
       </View>
       <DrawerContentScrollView
         {...props}
@@ -52,6 +55,9 @@ function AppDrawerContent(props: any) {
             key={route}
             label={label}
             labelStyle={drawerStyles.label}
+            activeTintColor="#328FC1"
+            inactiveTintColor="#123B5D"
+            activeBackgroundColor="#DFF7FF"
             style={drawerStyles.item}
             icon={({ color, size }) => (
               <Ionicons name={icon as any} color={color} size={size} />
@@ -77,15 +83,13 @@ const drawerStyles = StyleSheet.create({
     paddingTop: 54,
   },
   logo: {
-    alignItems: "center",
     backgroundColor: "#DFF7FF",
     borderRadius: 18,
     height: 54,
-    justifyContent: "center",
     marginBottom: 14,
+    resizeMode: "contain",
     width: 54,
   },
-  logoText: { color: "#328FC1", fontSize: 18, fontWeight: "900" },
   brandTitle: { color: "#FFFFFF", fontSize: 24, fontWeight: "900" },
   brandSubtitle: { color: "#C7F1F5", marginTop: 4 },
   menu: { paddingHorizontal: 12, paddingTop: 18 },
