@@ -1,11 +1,5 @@
 import { router } from "expo-router";
-import {
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import {
   Card,
@@ -42,9 +36,7 @@ export default function Dashboard() {
         />
 
         <Card style={styles.heroCard}>
-          <Text style={styles.heroLabel}>
-            TODAY&apos;S SURVEYS
-          </Text>
+          <Text style={styles.heroLabel}>TODAY&apos;S SURVEYS</Text>
           <Text
             style={{
               color: "#fff",
@@ -55,9 +47,7 @@ export default function Dashboard() {
           >
             {todaysSurveyCount}
           </Text>
-          <Text style={{ color: "#DBEAFE" }}>
-            Keep your field work moving.
-          </Text>
+          <Text style={{ color: "#DBEAFE" }}>Keep your field work moving.</Text>
         </Card>
 
         <Text
@@ -130,33 +120,17 @@ export default function Dashboard() {
               })
             }
           >
-            <Card>
-              <Text
-                style={{
-                  color: colors.ink,
-                  fontSize: 16,
-                  fontWeight: "800",
-                }}
-              >
-                {survey.siteName}
-              </Text>
-              <Text
-                style={{
-                  color: colors.muted,
-                  marginTop: 5,
-                }}
-              >
+            <Card style={styles.recentCard}>
+              <Text style={styles.recentTitle}>{survey.siteName}</Text>
+              <Text style={styles.recentMeta}>
                 {survey.clientName} · {survey.date}
               </Text>
               <Text
-                style={{
-                  color:
-                    survey.priority === "High"
-                      ? "#DC2626"
-                      : colors.primary,
-                  fontWeight: "700",
-                  marginTop: 8,
-                }}
+                style={
+                  survey.priority === "High"
+                    ? styles.recentHighPriority
+                    : styles.recentPriority
+                }
               >
                 {survey.priority} priority · {survey.status}
               </Text>
@@ -178,4 +152,27 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   heroText: { color: "#DBEAFE" },
+  recentCard: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+  },
+  recentTitle: {
+    color: "#000000",
+    fontSize: 16,
+    fontWeight: "800",
+  },
+  recentMeta: {
+    color: "#111827",
+    marginTop: 5,
+  },
+  recentPriority: {
+    color: colors.primary,
+    fontWeight: "700",
+    marginTop: 8,
+  },
+  recentHighPriority: {
+    color: colors.danger,
+    fontWeight: "700",
+    marginTop: 8,
+  },
 });
