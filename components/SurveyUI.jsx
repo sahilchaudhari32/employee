@@ -60,9 +60,15 @@ export function SafeScreen({ children, style = undefined }) {
 /** @param {{ children: any, style?: any }} props */
 export function Card({ children, style = undefined }) {
   return (
-    <BlurView intensity={35} tint="light" style={[styles.card, style]}>
-      {children}
-    </BlurView>
+    <View style={[styles.card, style]}>
+      <BlurView
+        intensity={42}
+        tint="light"
+        pointerEvents="none"
+        style={styles.cardBlur}
+      />
+      <View style={styles.cardContent}>{children}</View>
+    </View>
   );
 }
 export function Field({ label, ...props }) {
@@ -140,16 +146,23 @@ export const styles = StyleSheet.create({
   },
   subtitle: { color: colors.muted, marginTop: 3 },
   card: {
-    backgroundColor: colors.glass,
+    backgroundColor: "rgba(255,255,255,0.42)",
     borderRadius: 20,
     borderColor: colors.border,
     borderWidth: 1,
+    overflow: "hidden",
     padding: 18,
     marginBottom: 14,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 3,
+  },
+  cardBlur: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  cardContent: {
+    zIndex: 1,
   },
   field: { marginBottom: 15 },
   label: {
