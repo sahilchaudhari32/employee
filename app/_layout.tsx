@@ -7,10 +7,10 @@ import {
 } from "@react-navigation/native";
 import { Drawer } from "expo-router/drawer";
 import { router } from "expo-router";
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { DrawerContentScrollView } from "@react-navigation/drawer";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 import { SurveyProvider } from "@/context/SurveyContext";
@@ -51,22 +51,23 @@ function AppDrawerContent(props: any) {
         contentContainerStyle={drawerStyles.menu}
       >
         {drawerItems.map(([label, route, icon]) => (
-          <DrawerItem
+          <Pressable
             key={route}
-            label={label}
-            labelStyle={drawerStyles.label}
-            activeTintColor="#328FC1"
-            inactiveTintColor="#123B5D"
-            activeBackgroundColor="#DFF7FF"
             style={drawerStyles.item}
-            icon={({ color, size }) => (
-              <Ionicons name={icon as any} color={color} size={size} />
-            )}
+            android_ripple={{ color: "#BCEBFA" }}
             onPress={() => {
               navigation.dispatch(DrawerActions.closeDrawer());
               router.push(route as any);
             }}
-          />
+          >
+            <Ionicons
+              name={icon as any}
+              color="#328FC1"
+              size={23}
+              style={drawerStyles.itemIcon}
+            />
+            <Text style={drawerStyles.label}>{label}</Text>
+          </Pressable>
         ))}
       </DrawerContentScrollView>
     </BlurView>
@@ -93,7 +94,15 @@ const drawerStyles = StyleSheet.create({
   brandTitle: { color: "#FFFFFF", fontSize: 24, fontWeight: "900" },
   brandSubtitle: { color: "#C7F1F5", marginTop: 4 },
   menu: { paddingHorizontal: 12, paddingTop: 18 },
-  item: { borderRadius: 14, marginVertical: 3 },
+  item: {
+    alignItems: "center",
+    borderRadius: 14,
+    flexDirection: "row",
+    marginVertical: 3,
+    minHeight: 52,
+    paddingHorizontal: 16,
+  },
+  itemIcon: { marginRight: 16 },
   label: { color: "#123B5D", fontSize: 15, fontWeight: "700" },
 });
 
