@@ -52,7 +52,7 @@ export default function Profile() {
         </View>
 
         <Text style={profileStyles.sectionTitle}>Student details</Text>
-        <Card>
+        <Card style={profileStyles.detailsCard}>
           <InfoRow
             icon="card-outline"
             label="Enrollment"
@@ -178,6 +178,10 @@ const profileStyles = StyleSheet.create({
     fontWeight: "800",
     marginBottom: 10,
   },
+  detailsCard: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+  },
   infoRow: {
     alignItems: "center",
     flexDirection: "row",
@@ -188,9 +192,9 @@ const profileStyles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   infoText: { marginLeft: 13 },
-  infoLabel: { color: colors.muted, fontSize: 12 },
+  infoLabel: { color: "#111827", fontSize: 12 },
   infoValue: {
-    color: colors.ink,
+    color: "#000000",
     fontSize: 15,
     fontWeight: "700",
     marginTop: 3,
