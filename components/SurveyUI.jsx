@@ -2,7 +2,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { BlurView } from "expo-blur";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -59,17 +58,7 @@ export function SafeScreen({ children, style = undefined }) {
 }
 /** @param {{ children: any, style?: any }} props */
 export function Card({ children, style = undefined }) {
-  return (
-    <View style={[styles.card, style]}>
-      <BlurView
-        intensity={42}
-        tint="light"
-        pointerEvents="none"
-        style={styles.cardBlur}
-      />
-      <View style={styles.cardContent}>{children}</View>
-    </View>
-  );
+  return <View style={[styles.card, style]}>{children}</View>;
 }
 export function Field({ label, ...props }) {
   return (
@@ -157,12 +146,6 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 3,
-  },
-  cardBlur: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  cardContent: {
-    zIndex: 1,
   },
   field: { marginBottom: 15 },
   label: {
