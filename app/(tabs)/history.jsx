@@ -4,9 +4,11 @@ import {
   Alert,
   FlatList,
   Pressable,
+  StyleSheet,
   Text,
   View,
 } from "react-native";
+
 import {
   Card,
   Field,
@@ -17,6 +19,7 @@ import {
   styles,
 } from "@/components/SurveyUI";
 import { useSurveys } from "@/context/SurveyContext";
+
 export default function History() {
   const { surveys, deleteSurvey } = useSurveys();
   const [query, setQuery] = useState("");
@@ -24,14 +27,15 @@ export default function History() {
   const list = useMemo(
     () =>
       surveys.filter(
-        (s) =>
-          (priority === "All" || s.priority === priority) &&
-          `${s.siteName} ${s.clientName}`
+        (survey) =>
+          (priority === "All" || survey.priority === priority) &&
+          `${survey.siteName} ${survey.clientName}`
             .toLowerCase()
             .includes(query.toLowerCase()),
       ),
     [surveys, query, priority],
   );
+
   return (
     <SafeScreen>
       <View style={styles.screen}>
@@ -45,15 +49,13 @@ export default function History() {
           value={query}
           onChangeText={setQuery}
         />
-        <View
-          style={{ flexDirection: "row", marginBottom: 12 }}
-        >
-          {["All", "High", "Medium", "Low"].map((p) => (
+        <View style={historyStyles.filterRow}>
+          {["All", "High", "Medium", "Low"].map((item) => (
             <Pill
-              key={p}
-              label={p}
-              active={priority === p}
-              onPress={() => setPriority(p)}
+              key={item}
+              label={item}
+              active={priority === item}
+              onPress={() => setPriority(item)}
             />
           ))}
         </View>
@@ -61,15 +63,7 @@ export default function History() {
           data={list}
           keyExtractor={(item) => item.id}
           ListEmptyComponent={
-            <Text
-              style={{
-                textAlign: "center",
-                color: colors.muted,
-                marginTop: 30,
-              }}
-            >
-              No surveys found.
-            </Text>
+            <Text style={historyStyles.empty}>No surveys found.</Text>
           }
           renderItem={({ item }) => (
             <Pressable
@@ -80,40 +74,20 @@ export default function History() {
                 })
               }
             >
-              <Card>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
-                >
+              <Card style={historyStyles.card}>
+                <View style={historyStyles.cardHeader}>
+                  <Text style={historyStyles.siteName}>{item.siteName}</Text>
                   <Text
-                    style={{
-                      fontWeight: "800",
-                      fontSize: 16,
-                      color: colors.ink,
-                    }}
-                  >
-                    {item.siteName}
-                  </Text>
-                  <Text
-                    style={{
-                      color:
-                        item.priority === "High"
-                          ? "#DC2626"
-                          : colors.primary,
-                      fontWeight: "700",
-                    }}
+                    style={
+                      item.priority === "High"
+                        ? historyStyles.highPriority
+                        : historyStyles.priority
+                    }
                   >
                     {item.priority}
                   </Text>
                 </View>
-                <Text
-                  style={{
-                    color: colors.muted,
-                    marginTop: 6,
-                  }}
-                >
+                <Text style={historyStyles.meta}>
                   {item.clientName} · {item.date}
                 </Text>
                 <Pressable
@@ -126,22 +100,13 @@ export default function History() {
                         {
                           text: "Delete",
                           style: "destructive",
-                          onPress: () =>
-                            deleteSurvey(item.id),
+                          onPress: () => deleteSurvey(item.id),
                         },
                       ],
                     )
                   }
                 >
-                  <Text
-                    style={{
-                      color: colors.danger,
-                      marginTop: 12,
-                      fontWeight: "700",
-                    }}
-                  >
-                    Delete
-                  </Text>
+                  <Text style={historyStyles.delete}>Delete</Text>
                 </Pressable>
               </Card>
             </Pressable>
@@ -151,3 +116,45 @@ export default function History() {
     </SafeScreen>
   );
 }
+
+const historyStyles = StyleSheet.create({
+  filterRow: {
+    flexDirection: "row",
+    marginBottom: 12,
+  },
+  empty: {
+    color: colors.muted,
+    marginTop: 30,
+    textAlign: "center",
+  },
+  card: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+  },
+  cardHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  siteName: {
+    color: "#000000",
+    fontSize: 16,
+    fontWeight: "800",
+  },
+  meta: {
+    color: "#111827",
+    marginTop: 6,
+  },
+  priority: {
+    color: colors.primary,
+    fontWeight: "700",
+  },
+  highPriority: {
+    color: colors.danger,
+    fontWeight: "700",
+  },
+  delete: {
+    color: colors.danger,
+    fontWeight: "700",
+    marginTop: 12,
+  },
+});
